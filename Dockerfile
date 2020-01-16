@@ -1,12 +1,12 @@
 FROM gitlab/gitlab-ce:latest
-MAINTAINER Christian Marquardt
+MAINTAINER François Scala
 
 # Subgit version
 ENV SUBGIT_VERSION 3.3.9
 
 # Install Java
 RUN apt-get update && \
-    apt-get install -y openjdk-8-jre-headless && \
+    apt-get install -y openjdk-9-jre-headless && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/*
 
@@ -18,11 +18,5 @@ RUN curl -o subgit.deb -q https://subgit.com/files/subgit_${SUBGIT_VERSION}_all.
 # Fix SNI error with Java 7
 RUN sed -i '/^EXTRA_JVM_ARGUMENTS.*/a EXTRA_JVM_ARGUMENTS="$EXTRA_JVM_ARGUMENTS -Djsse.enableSNIExtension=false"' /usr/bin/subgit
 
-# Our wrapper script (enabling cron, and then launching GitLab's wrapper)
-COPY assets/outerwrapper /assets/
-
 # Define data volumes
 VOLUME ["/etc/gitlab", "/etc/subgit", "/etc/cron.d", "/var/opt/gitlab", "/var/log/gitlab"]
-
-# Wrapper to handle signal, trigger runit and reconfigure GitLab
-CMD ["/assets/outerwrapper"]
