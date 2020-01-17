@@ -2,9 +2,9 @@
 
 Docker image: [marq/gitlab-ce-subgit](https://hub.docker.com/r/marq/gitlab-ce-subgit/)
 
-[GitLab](http://gitlab.org)'s Community Edition, with [SubGit](http://www.subgit.com) v3.3.6 installed and `cron` running.
+[GitLab](http://gitlab.org)'s Community Edition, with [SubGit](http://www.subgit.com) v3.3.9 installed.
 
-All of [GitLab's Docker-related documentation](http://doc.gitlab.com/omnibus/docker/) remains valid; the only difference compared to the [official Docker image(s)](https://hub.docker.com/r/gitlab/gitlab-ce/) provided by GitLab HQ is that this image contains an installation of SubGit, a tool for migrating and even mirroring subversion and git source code repositories. In addition, one more volume (`/etc/subgit`) is exposed, allowing to store SubGit related  things like a license key. Finally, the `cron` daemon is started up upon launching the image, and the corresponding system directory `/etc/cron.d` is also exported.
+All of [GitLab's Docker-related documentation](http://doc.gitlab.com/omnibus/docker/) remains valid; the only difference compared to the [official Docker image(s)](https://hub.docker.com/r/gitlab/gitlab-ce/) provided by GitLab HQ is that this image contains an installation of SubGit, a tool for migrating and even mirroring subversion and git source code repositories. In addition, one more volume (`/etc/subgit`) is exposed, allowing to store SubGit related  things like a license key.
 
 [Subgit's SVN to Gitlab Howto](http://www.subgit.com/gitlab.html) is a worthwhile read. Note that his Docker image only contains the SubGit software, but no configuration or license files for it.
 
@@ -17,8 +17,6 @@ All of [GitLab's Docker-related documentation](http://doc.gitlab.com/omnibus/doc
 `/var/log/gitlab`: Logfiles
 
 `/etc/subgit`: Location for subgit.key (if available, SubGit will find it there)
-
-`/etc/cron.d`: Location for cron jobs (e.g., backups)
 
 ## Usage
 
