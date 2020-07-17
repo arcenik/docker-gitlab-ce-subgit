@@ -2,7 +2,7 @@ FROM gitlab/gitlab-ce:latest
 MAINTAINER François Scala
 
 # Subgit version
-ENV SUBGIT_VERSION 3.3.9
+ENV SUBGIT_VERSION 3.3.10
 
 # Install Java
 RUN apt-get update && \
